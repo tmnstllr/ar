@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophisticated Web-based AR.js Scene</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+<a-scene embedded arjs="sourceType: webcam;">
+
+    <!-- Marker 1: Hiro -->
+    <a-marker preset="hiro">
+        <!-- Add a 3D shape -->
+        <a-box color="red" position="0 0.5 0" scale="0.4 0.4 0.4"></a-box>
+
+        <!-- Add text -->
+        <a-text value="Marker 1" position="0 1 0" color="black" align="center" scale="3 3 3"></a-text>
+    </a-marker>
+
+    <!-- Define a camera for the scene -->
+    <a-entity camera></a-entity>
+</a-scene>
+</body>
+</html>
