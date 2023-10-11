@@ -5,68 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sophisticated Web-based AR.js Scene</title>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar.js"></script>
-    <script src="https://unpkg.com/three@v0.157.0/build/three.module.js"></script>
+    <script src="https://unpkg.com/three@0.157.0/build/three.module.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
 <div id="ar-container"></div>
 
 <script>
-    AFRAME.registerComponent("scene-setup", {
-        init: function () {
-            const sceneEl = document.querySelector("#ar-container");
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            sceneEl.appendChild(renderer.domElement);
+    // Initialize AR scene
+    const sceneEl = document.querySelector("#ar-container");
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    sceneEl.appendChild(renderer.domElement);
 
-            // Create a scene
-            const scene = new THREE.Scene();
+    const scene = new THREE.Scene();
+    const camera = new THREE.Camera();
+    scene.add(camera);
 
-            // Create a camera
-            const camera = new THREE.Camera();
-            scene.add(camera);
-
-            // Create a marker
-            const marker = new THREEx.ArMarkerControls(sceneEl.object3D, camera, {
-                type: "pattern",
-                patternUrl: "hiro.patt", // Replace with your marker pattern
-            });
-
-            // Add a 3D shape to the marker
-            const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-            const boxMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-            const box = new THREE.Mesh(boxGeometry, boxMaterial);
-            box.position.set(0, 0.5, 0);
-            marker.add(box);
-
-            // Add text to the marker
-            const loader = new THREE.FontLoader();
-            loader.load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json", function (font) {
-                const textGeometry = new THREE.TextGeometry("Marker 1", {
-                    font: font,
-                    size: 0.1,
-                    height: 0.01,
-                });
-                const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-                const text = new THREE.Mesh(textGeometry, textMaterial);
-                text.position.set(0, 0.2, 0);
-                marker.add(text);
-            });
-
-            // Render loop
-            const animate = function () {
-                requestAnimationFrame(animate);
-                renderer.render(scene, camera);
-            };
-
-            animate();
-        },
+    // Create a marker
+    const marker = new THREEx.ArMarkerControls(camera, {
+        type: "pattern",
+        patternUrl: "hiro.patt", // Replace with your marker pattern
     });
-</script>
 
-<a-scene embedded arjs="sourceType: webcam;">
-    <a-marker type="pattern" url="hiro.patt">
-        <a-entity scene-setup></a-entity>
-    </a-marker>
-</a-scene>
+    // Add a 3D shape to the marker
+    const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+    const boxMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const box = new THREE.Mesh(boxGeometry, boxMaterial);
+    box.position.set(0, 0.5, 0);
+    marker.add(box);
+
+    // Add text to the marker
+    const loader = new THREE.FontLoader();
+    loader.load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+        const textGeometry = new THREE.TextGeometry("Marker 1", {
+            font: font,
+            size: 0.1,
+            height: 0.01,
+        });
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+        const text = new THREE.Mesh(textGeometry, textMaterial);
+        text.position.set(0, 0.2, 0);
+        marker.add(text);
+    });
+
+    // Render loop
+    const animate = function () {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    };
+
+    animate();
+</script>
 </body>
 </html>
