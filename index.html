@@ -24,7 +24,10 @@
                 id="glbtest"
                 gltf-model="#glbtestmodel"
                 position="0 0 0"
-                scale="10 10 10">
+                scale="10 10 10"
+                animation__position="property: object3D.position.y; to: 0.15; dir: alternate; dur: 2000; loop: true"
+                animation__mouseenter="property: scale; to: 12 12 12; dur: 300; startEvents: mouseenter"
+                animation__mouseleave="property: scale; to: 7 7 7; dur: 300; startEvents: mouseleave">
         </a-entity>
 
     </a-marker>
@@ -37,6 +40,7 @@
 
     <!-- Define a camera for the scene -->
     <a-entity camera>
+        <a-cursor></a-cursor>
     </a-entity>
 </a-scene>
 </body>
