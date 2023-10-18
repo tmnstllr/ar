@@ -25,9 +25,9 @@
                 gltf-model="#glbtestmodel"
                 position="0 0 0"
                 scale="8 8 8"
-                animation__mouseclick="property: scale; to: 12 12 12; dur: 300; startEvents: click"
+                animation__mouseenter="property: scale; to: 12 12 12; dur: 300; startEvents: mouseenter"
                 animation__mouseleave="property: scale; to: 8 8 8; dur: 300; startEvents: mouseleave"
-                animation__fusing="property: rotation; startEvents: fusing; to: 0 360 0; loop: true; dur: 10000">
+                animation__mouseclick="property: rotation; to: 0 360 0; loop: true; dur: 7500; startEvents: click">
         </a-entity>
         <a-plane src="#wood" position="0 0 0" rotation="-90 0 0" width="5" height="5"></a-plane>
 
@@ -41,7 +41,7 @@
 
     <!-- Define a camera for the scene -->
     <a-entity camera>
-        <a-cursor fuse="true;"></a-cursor>
+        <a-cursor></a-cursor>
     </a-entity>
 </a-scene>
 </body>
