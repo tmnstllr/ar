@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophisticated Web-based AR.js Scene</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+<a-scene embedded arjs="sourceType: webcam;" renderer="antialias: true;">
+
+    <a-assets>
+        <a-asset-item id="glbtestmodel" src="plant_v2.glb"></a-asset-item>
+        <a-asset-item id="table_model_1" src="table3dmodel/scene.gltf"></a-asset-item>
+        <img id="backgroundTexture1" src="table3dmodel/textures/TischMat_baseColor.png">
+        <img id="backgroundTexture2" src="table3dmodel/textures/TischMat_metallicRoughness.png">
+        <img id="backgroundTexture3" src="table3dmodel/textures/TischMat_normal.png">
+        <a-asset-item id="table_model_2" src="egyptian_table/scene.gltf"></a-asset-item>
+        <img id="table_egypt_1" src="egyptian_table/textures/wire_228214153_baseColor.jpeg">
+        <img id="table_egypt_2" src="egyptian_table/textures/wire_228214153_metallicRoughness.png">
+        <img id="table_egypt_3" src="egyptian_table/textures/wire_228214153_normal.png">
+    </a-assets>
+
+    <a-marker preset="hiro">
+        <a-entity
+                id="glbtest"
+                gltf-model="#glbtestmodel"
+                position="0 0 0"
+                rotation="0 0 0"
+                scale="8 8 8"
+                animation__mouseenter="property: scale; to: 12 12 12; dur: 300; startEvents: mouseenter"
+                animation__mouseleave="property: scale; to: 8 8 8; dur: 300; startEvents: mouseleave"
+                animation__mouseclick="property: rotation; to: 0 360 0; loop: false; dur: 7000; startEvents: click">
+        </a-entity>
+        <a-entity
+                id="backgroundModel"
+                gltf-model="#table_model_1"
+                material="src: #backgroundTexture1"
+                position="0 -1.28 0"
+                scale="1 1 1">
+        </a-entity>
+    </a-marker>
+
+    <a-entity light="type: ambient; intensity: 4.2; color: #BBB"></a-entity>
+    <a-entity light="type: directional; color: #FFF; intensity: 5.6" position="-0.5 1 1"></a-entity>
+
+    <a-entity camera>
+        <a-cursor></a-cursor>
+    </a-entity>
+</a-scene>
+
+<script>
+    const backgroundModel = document.querySelector("#backgroundModel");
+    let isBackgroundModel1 = true; // Flag to toggle models
+
+    backgroundModel.addEventListener("click", () => {
+        isBackgroundModel1 = !isBackgroundModel1; // Toggle the flag
+
+        // Change the background model and texture based on the flag
+        if (isBackgroundModel1) {
+            backgroundModel.removeAttribute("gltf-model")
+            backgroundModel.setAttribute("gltf-model", "#table_model_1");
+            backgroundModel.setAttribute("material", "src: #backgroundTexture1");
+            backgroundModel.setAttribute("position", "0 -1.28 0");
+            backgroundModel.setAttribute("scale", "1 1 1");
+        } else {
+            backgroundModel.removeAttribute("gltf-model")
+            backgroundModel.setAttribute("gltf-model", "#table_model_2");
+            backgroundModel.setAttribute("material", "src: #table_egypt_1");
+            backgroundModel.setAttribute("position", "0 -1 0");
+            backgroundModel.setAttribute("scale", "0.1 0.1 0.1");
+        }
+    });
+</script>
+
+</body>
+</html>
