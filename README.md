@@ -1,7 +1,7 @@
 # Assignment 2
 
 ## Links to AR.js Websites
-Disclaimer: The websites are hosted on the domain `hotnakedwomen.live` which is a fun domain of me. It is not adult content. :D \
+Disclaimer: The websites are hosted using Github Pages on the domain `hotnakedwomen.live` which is a fun domain of me. It is not adult content. :D \
 [3D Models Version (as shown in the Video)](hotnakedwomen.live) \
 [Plane Version (not shown in the Video)](hotnakedwomen.live/plane.html)
 
