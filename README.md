@@ -2,8 +2,8 @@
 
 ## Links to AR.js Websites
 Disclaimer: The websites are hosted using Github Pages on the domain `hotnakedwomen.live` which is a fun domain of me. It is not adult content. :D \
-[3D Models Version (as shown in the Video)](hotnakedwomen.live) \
-[Plane Version (not shown in the Video)](hotnakedwomen.live/plane.html)
+[3D Models Version (as shown in the Video)](https://hotnakedwomen.live) \
+[Plane Version (not shown in the Video)](https://hotnakedwomen.live/plane.html)
 
 ## References
 ### 3D Scan App (Scaniverse)
